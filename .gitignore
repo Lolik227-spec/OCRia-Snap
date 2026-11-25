@@ -1,0 +1,12 @@
+# Рабочие файлы и снимки — не для репозитория
+config.json
+captures/
+*.log
+__pycache__/
+*.pyc
+
+# Черновые проверки и их вывод
+_*.py
+check-big*.txt
+lt-*.txt
+run-check-out.txt

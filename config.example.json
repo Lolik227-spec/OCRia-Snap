@@ -1,0 +1,39 @@
+{
+  "hotkeys": {
+    "snip": ["win+shift+s", "win+shift+x"],
+    "snip_image": ["win+ctrl+shift+s"],
+    "snip_ai": ["ctrl+alt+a"],
+    "clipboard": ["ctrl+alt+v"],
+    "silent_copy": ["ctrl+alt+s"]
+  },
+  "ai_engine": {
+    "url": "http://127.0.0.1:11434",
+    "model": "llamaindex/ocria-1:q8_0",
+    "keep_alive": "2m",
+    "num_ctx": 8192,
+    "num_predict": 4096,
+    "max_pixels": 4100000,
+    "upscale": 1.0
+  },
+  "solver": {
+    "url": "http://127.0.0.1:11434",
+    "model": "qwen2.5:1.5b",
+    "keep_alive": "2m",
+    "num_ctx": 6144,
+    "num_predict": 1024,
+    "tools": true,
+    "prompt": null
+  },
+  "clipboard_action": "off",
+  "copy_on_select": false,
+  "save_captures": true,
+  "markup_visible": true,
+  "fix_cyrillic": true,
+  "engine": "nano",
+  "checker": {
+    "engine": "rules"
+  },
+  "preprocess": true,
+  "output_format": "text",
+  "dpi": 250
+}
