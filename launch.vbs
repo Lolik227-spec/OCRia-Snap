@@ -1,3 +1,5 @@
 ' OCRia Snap — запуск без окна консоли
+Set fso = CreateObject("Scripting.FileSystemObject")
 Set sh = CreateObject("WScript.Shell")
-sh.Run """C:\Users\Administrator\AppData\Local\Python\pythoncore-3.14-64\pythonw.exe"" ""C:\Users\Administrator\ocria-snap\ocria_snap.pyw""", 0, False
+dir = fso.GetParentFolderName(WScript.ScriptFullName)
+sh.Run """" & dir & "\start-ocria-snap.cmd""", 0, False

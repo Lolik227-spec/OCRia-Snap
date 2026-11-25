@@ -54,6 +54,10 @@ d.text((60, ty + len(rows) * rh + 30),
        "Итог: план выполнен на 104%. Документ подготовлен автоматически.",
        font=f_b, fill="black")
 
-os.makedirs(r"C:\Users\Administrator\ocria-snap\samples", exist_ok=True)
-img.save(r"C:\Users\Administrator\ocria-snap\samples\ru_test.png")
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+SAMPLES = os.path.join(ROOT, "samples")
+
+os.makedirs(SAMPLES, exist_ok=True)
+img.save(os.path.join(SAMPLES, "ru_test.png"))
 print("saved", img.size)

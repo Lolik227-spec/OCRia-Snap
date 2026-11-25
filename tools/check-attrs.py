@@ -6,7 +6,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
-PATH = os.path.join(HERE, "ocria_snap.pyw")
+ROOT = os.path.dirname(HERE)
+PATH = os.path.join(ROOT, "ocria_snap.pyw")
 
 tree = ast.parse(io.open(PATH, encoding="utf-8").read())
 

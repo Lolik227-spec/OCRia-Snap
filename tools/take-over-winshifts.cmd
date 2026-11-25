@@ -25,6 +25,6 @@ start "" explorer.exe
 timeout /t 2 /nobreak >nul
 echo.
 echo Проверка:
-py "%~dp0tools-check-hotkey.py"
+py "%~dp0check-hotkey.py"
 echo.
-echo Теперь перезапустите OCRia Snap (start-ocria-snap.cmd).
+echo Теперь перезапустите OCRia Snap (start-ocria-snap.cmd в корне проекта).

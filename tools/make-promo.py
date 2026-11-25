@@ -1,6 +1,6 @@
 """Рекламный баннер OCRia Snap — рисуем локально, без внешних сервисов.
 
-Запуск:  py tools-make-promo.py
+Запуск:  py tools/make-promo.py
 Результат: assets\\promo.png  (1200x630, под соцсети и GitHub)
 """
 from __future__ import annotations
@@ -9,8 +9,9 @@ import os
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
-APP_DIR = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(APP_DIR, "assets", "promo.png")
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+OUT = os.path.join(ROOT, "assets", "promo.png")
 
 W, H = 1200, 630          # итоговый размер
 S = 2                     # рисуем вдвое крупнее и уменьшаем — так края гладкие

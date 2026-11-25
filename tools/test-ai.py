@@ -5,7 +5,8 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 HERE = os.path.dirname(os.path.abspath(__file__))
-spec = importlib.util.spec_from_file_location("ocria_snap", os.path.join(HERE, "ocria_snap.pyw"))
+ROOT = os.path.dirname(HERE)
+spec = importlib.util.spec_from_file_location("ocria_snap", os.path.join(ROOT, "ocria_snap.pyw"))
 m = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(m)
 

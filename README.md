@@ -50,13 +50,13 @@
 Скрипт отдаёт комбинацию нашему софту:
 
 ```
-take-over-winshifts.cmd     :: выставить DisabledHotkeys=S и перезапустить проводник
-restore-winshifts.cmd       :: вернуть как было
-tools-check-hotkey.py       :: проверить, свободна ли комбинация
+tools\take-over-winshifts.cmd   :: выставить DisabledHotkeys=S и перезапустить проводник
+tools\restore-winshifts.cmd     :: вернуть как было
+tools\check-hotkey.py           :: проверить, свободна ли комбинация
 ```
 
 **Побочный эффект:** вместе с `Win+Shift+S` перестаёт работать `Win+S` (поиск винды) — они
-делят одну букву. Значение реестра сохраняется в `winshifts-backup.txt`, откат — одним запуском.
+делят одну букву. Значение реестра сохраняется в `tools\winshifts-backup.txt`, откат — одним запуском.
 
 Пока комбинация занята, запасной вариант — `Win+Shift+X`, а также `Ctrl+Alt+S`/`Ctrl+Alt+V`.
 
@@ -77,12 +77,12 @@ tools-check-hotkey.py       :: проверить, свободна ли ком�
 ## Запуск и автозагрузка
 
 ```
-start-ocria-snap.cmd        :: запустить сейчас (или launch.vbs — без окна консоли)
-install-autostart.cmd       :: включить автозапуск при входе в систему
-remove-autostart.cmd        :: выключить автозапуск
+start-ocria-snap.cmd            :: запустить сейчас (или launch.vbs — без окна консоли)
+tools\install-autostart.cmd     :: включить автозапуск при входе в систему
+tools\remove-autostart.cmd      :: выключить автозапуск
 ```
 
-`install-autostart.cmd` создаёт в папке «Автозагрузка» обычный ярлык **с иконкой** приложения:
+`tools\install-autostart.cmd` создаёт в папке «Автозагрузка» обычный ярлык **с иконкой** приложения:
 
 ```
 %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\OCRia Snap.lnk
@@ -141,25 +141,30 @@ py ocria_snap.pyw --selftest samples\ru_test.png
 ```
 ocria_snap.pyw              приложение (трей, рамка, текстовый слой, OCR, буфер)
 ocria_render.py             красивый вывод: формулы LaTeX и таблицы -> картинка
-config.json                 настройки (в том числе выбранная модель)
+config.example.json         пример настроек (рабочий config.json создаётся сам)
 assets/ocria-snap.ico       иконка приложения и значка в трее
 assets/icon-source.png      исходник иконки
-take-over-winshifts.cmd     забрать Win+Shift+S у винды
-restore-winshifts.cmd       откатить
-install-autostart.cmd       автозапуск: ярлык с иконкой в «Автозагрузке»
-remove-autostart.cmd        убрать из автозагрузки
-tools-install-shortcut.vbs  создание ярлыка (вызывается установщиком)
-tools-make-icon.py          сборка .ico из картинки
-tools-check-hotkey.py       проверка занятости Win+Shift+S
+assets/promo.png            картинка для README и соцсетей
 samples/ru_test.png         тестовая страница с русским текстом
-captures/                   сохранённые снимки
-tools-fetch-models.py       ручная закачка модели
-tools-bench.py              бенчмарк качества OCR (CER на синтетике с эталоном)
-tools-test-ai.py            юнит-проверки клиента OCRia-1 (без модели)
-tools-make-sample.py        генератор тестовой страницы
+captures/                   сохранённые снимки (создаётся при работе)
+start-ocria-snap.cmd        запуск без консоли
+launch.vbs                  то же самое, двойным щелчком
+tools/                      все вспомогательные скрипты:
+  take-over-winshifts.cmd     забрать Win+Shift+S у винды
+  restore-winshifts.cmd       откатить
+  install-autostart.cmd       автозапуск: ярлык с иконкой в «Автозагрузке»
+  remove-autostart.cmd        убрать из автозагрузки
+  install-shortcut.vbs        создание ярлыка (вызывается установщиком)
+  make-icon.py                сборка .ico из картинки
+  make-promo.py               сборка баннера assets/promo.png
+  check-hotkey.py             проверка занятости Win+Shift+S
+  fetch-models.py             ручная закачка модели
+  bench.py                    бенчмарк качества OCR (CER на синтетике с эталоном)
+  test-ai.py                  юнит-проверки клиента OCRia-1 (без модели)
+  make-sample.py              генератор тестовой страницы
 ```
 
-Модели: `C:\Users\Administrator\AppData\Local\liteparse\models\ocria-nano`.
+Модели: `%LOCALAPPDATA%\liteparse\models\ocria-nano`.
 Переустановить — `lit models pull ocria-nano`, удалить — `lit models rm ocria-nano`.
 
 ## Значок в трее и выбор модели
@@ -403,7 +408,7 @@ py -m pip install language-tool-python
 
 ## Насколько точно на русском
 
-Измеряем, а не гадаем: `tools-bench.py` гоняет 15 синтетических «скриншотов» с известным
+Измеряем, а не гадаем: `tools/bench.py` гоняет 15 синтетических «скриншотов» с известным
 эталоном (документы на белом, код на тёмном фоне, кавычки с английскими словами) и считает CER —
 долю ошибочных символов.
 

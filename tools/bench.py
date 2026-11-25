@@ -13,7 +13,8 @@ import time
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ARIAL = "C:\\Windows\\Fonts\\arial.ttf"
+ROOT = os.path.dirname(HERE)
+ARIAL = r"C:\Windows\Fonts\arial.ttf"
 SEGOE = "C:\\Windows\\Fonts\\segoeui.ttf"
 CONSOLAS = "C:\\Windows\\Fonts\\consola.ttf"
 
@@ -118,7 +119,7 @@ def cer(truth: str, got: str) -> float:
 def main():
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
     spec = importlib.util.spec_from_file_location("ocria_snap",
-                                                  os.path.join(HERE, "ocria_snap.pyw"))
+                                                  os.path.join(ROOT, "ocria_snap.pyw"))
     m = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(m)
 

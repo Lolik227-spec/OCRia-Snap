@@ -5,9 +5,11 @@ import sys
 from PIL import Image
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "assets", "icon-source.png")
-ICO = os.path.join(HERE, "assets", "ocria-snap.ico")
-PNG = os.path.join(HERE, "assets", "ocria-snap.png")
+ROOT = os.path.dirname(HERE)
+ASSETS = os.path.join(ROOT, "assets")
+SRC = os.path.join(ASSETS, "icon-source.png")
+ICO = os.path.join(ASSETS, "ocria-snap.ico")
+PNG = os.path.join(ASSETS, "ocria-snap.png")
 
 img = Image.open(SRC).convert("RGB")
 w, h = img.size
@@ -51,4 +53,4 @@ print("сохранено:", PNG)
 
 # контроль: как выглядит в 16 px
 square.resize((16, 16), Image.LANCZOS).resize((64, 64), Image.NEAREST).save(
-    os.path.join(HERE, "assets", "icon-16-preview.png"))
+    os.path.join(ASSETS, "icon-16-preview.png"))
